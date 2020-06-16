@@ -1,4 +1,10 @@
 import os
+#建立csv
+def write_new_file(filename):
+    with open(filename, 'w', encoding= 'utf-8') as f:
+        f.write('商品,價格\n')
+
+
 #讀取檔案            
 def read_file(filename):
     drink =[]
@@ -36,14 +42,17 @@ def print_tab():
 def main():
     filename = 'drink.csv'
     if os.path.isfile(filename):
-        print('有此檔案')
+        print('有此檔案,讀取並印出商品及價格!')
+        print_tab()
         drink = read_file(filename)
+        print_file(drink)
+        print_tab()
+        drink = drink_input(drink)
+        write_file(filename, drink)
+        print_tab()
+        print_file(drink)
     else:
-        print('無此檔案')
-    print_file(drink)
-    drink = drink_input(drink)
-    write_file('drink.csv', drink)
-    print_tab()
-    print_file(drink)
+        print('無此檔案,重新建立檔案並結束程式!')
+        write_new_file(filename)
 main()
 
